@@ -13,7 +13,7 @@
 
    当我们利用make debug 和make gdb 逐行查看汇编代码时，我们首先利用x/10i $pc看一看初始代码在什么地址上。
 	<image 1>
- 	![image1]("E:\image1-lab0_1.png")
+ 	![image1](image1-lab0_1.png)
    现在即将执行的第一行代码正是我们的pc复位地址所指向的代码。
 
    下面我们逐行解释即将运行的汇编代码。
