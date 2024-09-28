@@ -12,8 +12,8 @@
    同时内核镜像 os.bin 被加载到以物理地址 0x80200000 开头的区域上。
 
    当我们利用make debug 和make gdb 逐行查看汇编代码时，我们首先利用x/10i $pc看一看初始代码在什么地址上。
-	<image 1>
- 	![image1](image1-lab0_1.png)
+	
+   ![image1-lab0_1.png](https://github.com/qianlisiji-chao/image/blob/main/image1-lab0_1.png)  
    现在即将执行的第一行代码正是我们的pc复位地址所指向的代码。
 
    下面我们逐行解释即将运行的汇编代码。
@@ -26,9 +26,9 @@
 0x80000000地址上是我们的OpenSBI开始的地址，这也就是说，前面的五条指令是RISC-V硬件加电后执行的几条指令。
 __这几条代码实现了系统的初始化并跳转到程序的执行入口的功能。__ 	
 我们尝试继续逐步调试以到达0x80200000地址，但是太多了，我们只再分析几个汇编代码，然后输入命令break *0x80200000，在 0x80200000 处设置断点，输入命令continue，执行直到碰到断点。<br>
-<image 4>
+![](https://github.com/qianlisiji-chao/image/blob/main/image4-lab0_1.png)  
 现在我们利用x/10i $pc 查看即将执行的十条指令<br>
-<image 2>
+![](https://github.com/qianlisiji-chao/image/blob/main/image2-lab0_1.png)  
 	下面我们继续逐行解释即将运行的汇编代码。<br>
  ```  
 0x80000000:	csrr	a6,mhartid     csrr指令将读取当前硬件线程的 ID，并将其存放到寄存器 a6 中  
@@ -53,13 +53,13 @@ bootloader，一个全新的知识点，第一次知道在操作系统运行前�
 处理最简单的断点中断和时钟中断
 ## 实验内容
 通过处理断点和时钟中断验证了我们正确实现了中断机制。
-##练习1：理解内核启动中的程序入口操作
+## 练习1：理解内核启动中的程序入口操作
 	指令 la sp, bootstacktop 将 bootstacktop 的地址加载到栈指针 sp 中，用于初始化栈指针，以便后续的栈操作。
 	kern/init/entry.S: OpenSBI启动之后将要跳转到的一段汇编代码。
 	在这里进行内核栈的分配，然后转入C语言编写的内核初始化函数。
 	tail kern_init 完成了内核的初始化操作，目的是为内核的完全启动做准备    
 
-##练习2：完善中断处理
+## 练习2：完善中断处理
 	首先，看一看现在这次中断是不是第100次中断。如果是的话我们要打印一次100ticks，并记录现在已经打印了多少次了。要是打印次数到达10次，证明该结束了。如果没结束，记得重新设置时钟中断。
 ```c
        /* LAB1 EXERCISE2   2213605 :  */
