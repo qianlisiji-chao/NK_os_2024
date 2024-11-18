@@ -30,7 +30,7 @@ static int _lru_map_swappable(struct mm_struct *mm, uintptr_t addr, struct Page 
 
     list_add(head, entry);
     //判断访问页是否在链表中
-    _lru_update_pages(mm,page);
+    //_lru_update_pages(mm,page);
 
     return 0;
 }
